@@ -3,9 +3,7 @@
 
 name: rollup-plugin-markdown-jsdoc
 
-on:
-  release:
-    types: [push]
+on: push
 
 jobs:
   build:
