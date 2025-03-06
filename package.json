@@ -1,0 +1,21 @@
+{
+  "name": "rollup-plugin-markdown-jsdoc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [
+    "rollup",
+    "rollup-plugin",
+    "markdown",
+    "jsdoc",
+    "license"
+  ],
+  "scripts": {
+    "test": "rollup --config ./test/rollup.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.79.2"
+  }
+}
