@@ -22,7 +22,7 @@ function methodE(methodEparam1, methodEparam2) { }
  * @param {string} methodFparam1 参数1
  * @param {number} methodFparam2 参数2
  * @return {string} methodF 返回值
- * @example methodF('hello', 123) // 'hello'
+ * @example methodF('hello', 123) // 'test'
  */
 async function methodF(methodFparam1, methodFparam2) { }
 
