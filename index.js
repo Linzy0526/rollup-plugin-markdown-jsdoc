@@ -63,17 +63,18 @@ export default function markdownJsdocPlugin(options = {}) {
             if (isExcluded || !isIncluded) {
                 return { code, map: null }
             }
-            const defineJsRegex = /\/\*\*(\s*[\r\n\*]+\s*@README(?:[^*\/]|(?:\*(?!\/)|(?<!\/)\*)|(?:\/(?!\*)))*?)\*\/\s*[\r\n]+\s*(?:const|let|var|function)\s+([^\s=()]+)/g;
+            const defineJsRegex = /\/\*\*(\s*[\r\n\*]+\s*@README(?:[^*\/]|(?:\*(?!\/)|(?<!\/)\*)|(?:\/(?!\*)))*?)\*\/\s*[\r\n]+\s*(const|let|var|function|class)\s+([^\s=()]+)/g;
+            const exportJsRegex = /\/\*\*(\s*[\r\n\*]+\s*@README(?:[^*\/]|(?:\*(?!\/)|(?<!\/)\*)|(?:\/(?!\*)))*?)\*\/\s*[\r\n]+\s*(?:export|export\s+default|export\s+async|export\s+default\s+async)\s+(const|let|var|function|class)\s+([^\s=()]+)/g;
             const objectJsRegex = /\/\*\*(\s*[\r\n\*]+\s*@README(?:[^*\/]|(?:\*(?!\/)|(?<!\/)\*)|(?:\/(?!\*)))*?)\*\/\s*[\r\n]+\s*([a-zA-Z_$][\w$]*)\s*(?::\s*function\s*\(|\()/g;
             const paramRegex = /@param\s*{\s*(\w+)\s*}\s*(\w+)\s*(.*)/g;
             const nameRegex = /@name\s*(\w+)\s*(.*)/;
             const returnRegex = /@return\s*{\s*(\w+)\s*}\s*(.*)/;
             const exampleRegex = /@example\s*(.*)/;
 
-            const matches = [...code.matchAll(defineJsRegex), ...code.matchAll(objectJsRegex)];
+            const matches = [...code.matchAll(defineJsRegex), ...code.matchAll(exportJsRegex), ...[...code.matchAll(objectJsRegex)].map(match => [match[0], match[1], 'function', match[2]])];
 
             for (const match of matches) {
-                const [_, commentBlock, defaultName] = match;
+                const [_, commentBlock, varType, defaultName] = match;
                 let result = {}
 
                 // 提取名称
