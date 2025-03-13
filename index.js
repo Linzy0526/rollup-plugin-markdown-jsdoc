@@ -50,7 +50,7 @@ function checkPath(path, regx) {
 
 
 
-export default function markdownJsdocPlugin(options = {}) {
+function markdownJsdocPlugin(options = {}) {
     if (!(options !== null && typeof options === 'object' && !Array.isArray(options))) throw new Error('options must be an object');
 
     const { outputPath = './dist/api-docs.md', exclude = ['node_modules'], include = [] } = options || {};
@@ -111,3 +111,6 @@ export default function markdownJsdocPlugin(options = {}) {
         }
     }
 }
+export default markdownJsdocPlugin;
+
+module.exports = markdownJsdocPlugin;
