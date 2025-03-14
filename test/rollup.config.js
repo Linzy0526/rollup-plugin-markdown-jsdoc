@@ -1,4 +1,4 @@
-import markdownJsdocPlugin from "../index"
+const markdownJsdocPlugin = require('../index.js').default;
 
 export default {
     input: './test/index.js',

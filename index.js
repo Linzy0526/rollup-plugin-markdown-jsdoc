@@ -111,6 +111,5 @@ function markdownJsdocPlugin(options = {}) {
         }
     }
 }
-export default markdownJsdocPlugin;
 
-module.exports = markdownJsdocPlugin;
+exports.default = markdownJsdocPlugin
